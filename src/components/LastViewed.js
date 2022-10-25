@@ -5,10 +5,6 @@ import Nav from "./nav";
 export default function LastViewed() {
   const location = useLocation();
 
-  if (!localStorage.getItem("last")) {
-    localStorage.setItem("last", JSON.stringify([]));
-  }
-
   const [tab, setTab] = useState([]);
 
   useEffect(() => {
