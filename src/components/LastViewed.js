@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Nav from "./nav";
 
 export default function LastViewed() {
@@ -9,7 +9,23 @@ export default function LastViewed() {
     localStorage.setItem("last", JSON.stringify([]));
   }
 
-  const [tab, setTab] = useState(JSON.parse(localStorage.getItem("last")));
+  const [tab, setTab] = useState([]);
+
+  useEffect(() => {
+    const item = localStorage.getItem("last");
+
+    if (item && item != null && item != "undefined" && item != undefined) {
+      setTab(JSON.parse(item));
+    } else {
+      localStorage.setItem("last", JSON.stringify([]));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (tab.length > 0) {
+      localStorage.setItem("last", JSON.stringify(tab));
+    }
+  }, [tab]);
 
   return (
     <div>
