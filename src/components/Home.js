@@ -6,6 +6,12 @@ import ManufactureList from "./ManufactureList";
 export default function Home() {
   const [query, setQuery] = useState("");
 
+  const [minutes, setMinutes] = useState(Number);
+
+  const [hours, setHours] = useState(Number);
+
+  const date = new Date();
+
   const navigate = useNavigate();
 
   const eventHandler = (e) => {
@@ -38,10 +44,41 @@ export default function Home() {
   };
 
   useEffect(() => {}, [query]);
+
+  useEffect(() => {
+    if (minutes == 0) {
+      setMinutes(date.getMinutes());
+    } else {
+      let interval;
+      interval = setInterval(() => {
+        setMinutes(minutes - 1);
+      }, 1000);
+
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [minutes]);
+
+  useEffect(() => {
+    if (hours == 0) {
+      setHours(date.getHours());
+    } else {
+      let interval;
+      interval = setInterval(() => {
+        setHours(hours - 1);
+      }, 60000);
+
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [hours]);
   return (
     <div className="main" onKeyDown={handleKeyDown}>
       <div className="box">
         <h1>Search Car</h1>
+        <h2>{hours + ":" + minutes}</h2>
         <input
           type="text"
           onChange={(event) => {
