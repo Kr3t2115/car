@@ -43,12 +43,15 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    setHours(1);
+    setMinutes(2);
+  }, []);
+
   useEffect(() => {}, [query]);
 
   useEffect(() => {
-    if (minutes == 0) {
-      setMinutes(date.getMinutes());
-    } else {
+    if (minutes != 0) {
       let interval;
       interval = setInterval(() => {
         setMinutes(minutes - 1);
@@ -58,12 +61,18 @@ export default function Home() {
         clearInterval(interval);
       };
     }
+
+    if (minutes == 0 && hours == 0) {
+      return;
+    }
+
+    if (minutes == 0) {
+      setMinutes(60);
+    }
   }, [minutes]);
 
   useEffect(() => {
-    if (hours == 0) {
-      setHours(date.getHours());
-    } else {
+    if (hours != 0) {
       let interval;
       interval = setInterval(() => {
         setHours(hours - 1);
