@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Home.css";
 import ManufactureList from "./ManufactureList";
+import Navigation from "./Navigation";
 
 export default function Home() {
   const [query, setQuery] = useState("");
