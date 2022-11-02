@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import "../styles/Cars.css";
 import CarsList from "./CarsList";
 import ManufactureList from "./ManufactureList";
+import MenuIcon from "@mui/icons-material/Menu";
 
 export default function Cars() {
   const { query } = useParams();
+
+  const location = useLocation();
 
   const [carBrand, setCardBrand] = useState(query);
 
   const [allData, setAllData] = useState([]);
 
   let isTyping;
-  
+
+  const [width, setWidth] = useState("0px");
+
+  const style = {
+    width: width,
+  };
+
   const send = async () => {
     var loader = document.getElementById("loader");
     var images = document.getElementById("images");
@@ -36,6 +45,8 @@ export default function Cars() {
         throw new Error(req.statusText);
       }
       const parsedData = await req.json();
+
+      console.log(parsedData);
 
       setAllData(parsedData.hits);
 
@@ -91,8 +102,37 @@ export default function Cars() {
   }, [carBrand]);
   return (
     <div>
-      <div className="form">
-        <div className="layer">
+      <div id="mySidenav" style={style} className="sidenav">
+        <a
+          className="closebtn"
+          onClick={() => {
+            setWidth("0px");
+          }}
+        >
+          &times;
+        </a>
+        <Link to="/">Home</Link>
+        <Link to={"/cars/" + carBrand}>Cars {carBrand}</Link>
+        <Link
+          to="/fav"
+          state={{
+            q: carBrand,
+          }}
+        >
+          Fav
+        </Link>
+        <Link
+          to="/last"
+          state={{
+            q: carBrand,
+          }}
+        >
+          Last
+        </Link>
+      </div>
+
+      <nav className="navigation">
+        <div className="layerDetail">
           <h1>Find your car</h1>
           <input
             defaultValue={query}
@@ -100,26 +140,18 @@ export default function Cars() {
               eventHandler(event);
             }}
           ></input>
-
-          <Link
-            to={"/fav"}
-            state={{
-              q: carBrand,
+          <MenuIcon
+            sx={{ fontSize: 40 }}
+            onClick={() => {
+              if (width == "0px") {
+                setWidth("200px");
+              } else {
+                setWidth("0px");
+              }
             }}
-          >
-            Fav pics
-          </Link>
-
-          <Link
-            to={"/last"}
-            state={{
-              q: carBrand,
-            }}
-          >
-            Last
-          </Link>
+          ></MenuIcon>
         </div>
-      </div>
+      </nav>
 
       <h1 id="typeSth">Type somthing</h1>
       <span id="carError">Not found your car</span>

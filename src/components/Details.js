@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import "../styles/Details.css";
 import DetailsData from "./DetailsData";
+import MenuIcon from "@mui/icons-material/Menu";
 
 export default function Details() {
   const { carId } = useParams();
@@ -17,6 +18,12 @@ export default function Details() {
   const navigate = useNavigate();
 
   const location = useLocation();
+
+  const [width, setWidth] = useState("0px");
+
+  const style = {
+    width: width,
+  };
 
   const send = async () => {
     try {
@@ -44,15 +51,47 @@ export default function Details() {
 
   return (
     <div>
+      <div id="mySidenav" style={style} className="sidenav">
+        <a
+          className="closebtn"
+          onClick={() => {
+            setWidth("0px");
+          }}
+        >
+          &times;
+        </a>
+        <Link to="/">Home</Link>
+        <Link to={"/cars/" + location.state.q}>Cars {location.state.q}</Link>
+        <Link
+          to="/fav"
+          state={{
+            q: location.state.q,
+          }}
+        >
+          Fav
+        </Link>
+        <Link
+          to="/last"
+          state={{
+            q: location.state.q,
+          }}
+        >
+          Last
+        </Link>
+      </div>
+
       <nav className="navigation">
         <div className="layerDetail">
-          <Link to={"/cars/" + location.state.q}>
-            <button>Back to cars</button>
-          </Link>
-
-          <Link to={"/"}>
-            <button>Back to home</button>
-          </Link>
+          <MenuIcon
+            sx={{ fontSize: 40 }}
+            onClick={() => {
+              if (width == "0px") {
+                setWidth("200px");
+              } else {
+                setWidth("0px");
+              }
+            }}
+          ></MenuIcon>
         </div>
       </nav>
 

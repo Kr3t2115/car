@@ -1,11 +1,17 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Nav from "./nav";
+import MenuIcon from "@mui/icons-material/Menu";
 
 export default function LastViewed() {
   const location = useLocation();
 
   const [tab, setTab] = useState([]);
+  const [width, setWidth] = useState("0px");
+
+  const style = {
+    width: width,
+  };
 
   useEffect(() => {
     const item = localStorage.getItem("last");
@@ -25,7 +31,49 @@ export default function LastViewed() {
 
   return (
     <div>
-      <Nav></Nav>
+      <div id="mySidenav" style={style} className="sidenav">
+        <a
+          className="closebtn"
+          onClick={() => {
+            setWidth("0px");
+          }}
+        >
+          &times;
+        </a>
+        <Link to="/">Home</Link>
+        <Link to={"/cars/" + location.state.q}>Cars {location.state.q}</Link>
+        <Link
+          to="/fav"
+          state={{
+            q: location.state.q,
+          }}
+        >
+          Fav
+        </Link>
+        <Link
+          to="/last"
+          state={{
+            q: location.state.q,
+          }}
+        >
+          Last
+        </Link>
+      </div>
+
+      <nav className="navigation">
+        <div className="layerDetail">
+          <MenuIcon
+            sx={{ fontSize: 40 }}
+            onClick={() => {
+              if (width == "0px") {
+                setWidth("200px");
+              } else {
+                setWidth("0px");
+              }
+            }}
+          ></MenuIcon>
+        </div>
+      </nav>
 
       <h1>Last</h1>
       <div className="list">
