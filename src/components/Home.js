@@ -6,9 +6,10 @@ import ManufactureList from "./ManufactureList";
 export default function Home() {
   const [query, setQuery] = useState("");
 
-  const [minutes, setMinutes] = useState(Number);
-
-  const [hours, setHours] = useState(Number);
+  const [time, setTIme] = useState({
+    hours: null,
+    minutes: null,
+  });
 
   const date = new Date();
 
@@ -44,50 +45,41 @@ export default function Home() {
   };
 
   useEffect(() => {
-    setHours(date.getHours());
-    setMinutes(date.getMinutes());
+    setTIme({
+      hours: date.getHours(),
+      minutes: date.getMinutes(),
+    });
   }, []);
 
   useEffect(() => {}, [query]);
 
   useEffect(() => {
-    if (minutes != 0) {
-      let interval;
-      interval = setInterval(() => {
-        setMinutes(minutes - 1);
-      }, 1000);
+    let interval;
+    interval = setInterval(() => {
+      if (time.minutes == 0 && time.hours == 0) {
+        return;
+      }
+      if (time.minutes == 0 && time.hours != 0) {
+        setTIme((element) => ({
+          ...element,
+          hours: element.hours - 1,
+          minutes: 59,
+        }));
+      } else {
+        setTIme((element) => ({ ...element, minutes: element.minutes - 1 }));
+      }
+    }, 1000);
 
-      return () => {
-        clearInterval(interval);
-      };
-    }
+    return () => {
+      clearInterval(interval);
+    };
+  }, [time]);
 
-    if (minutes == 0 && hours == 0) {
-      return;
-    }
-
-    if (minutes == 0) {
-      setMinutes(60);
-    }
-  }, [minutes]);
-
-  useEffect(() => {
-    if (hours != 0) {
-      let interval;
-      interval = setInterval(() => {
-        setHours(hours - 1);
-      }, 60000);
-
-      return () => {
-        clearInterval(interval);
-      };
-    }
-  }, [hours]);
   return (
     <div className="main" onKeyDown={handleKeyDown}>
       <div className="box">
         <h1>Search Car</h1>
-        <h2>{hours + ":" + minutes}</h2>
+        <h2>{time.hours + ":" + time.minutes}</h2>
         <input
           type="text"
           onChange={(event) => {
