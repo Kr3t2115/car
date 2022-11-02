@@ -6,11 +6,13 @@
   background-repeat: no-repeat;
   background-size: cover;
   box-sizing: border-box;
-  display: grid;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .box {
   width: min(350px, 100%);
-  height: min(250px, 350px);
+  height: auto;
   text-align: center;
   background-color: #c7c6c3;
   margin-left: 10%;
@@ -19,7 +21,7 @@
 }
 .box input {
   width: 100%;
-  height: 20%;
+  height: 50px;
   box-sizing: border-box;
 }
 .box span {
@@ -32,7 +34,7 @@
 .box button {
   margin-top: 20px;
   width: 100%;
-  height: 20%;
+  height: 50px;
   color: #fff;
   background-color: #8b1a25;
   border: 2px solid #8b1a25;
