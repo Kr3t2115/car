@@ -44,8 +44,8 @@ export default function Home() {
   };
 
   useEffect(() => {
-    setHours(1);
-    setMinutes(2);
+    setHours(date.getHours());
+    setMinutes(date.getMinutes());
   }, []);
 
   useEffect(() => {}, [query]);
