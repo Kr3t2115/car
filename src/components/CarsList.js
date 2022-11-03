@@ -166,23 +166,27 @@ export default function CarsList({ data, query }) {
           }
 
           return (
-            <div className="listContainer">
-              {button}
-              <Link
-                onClick={() => {
-                  addToLastView(e.id, e.largeImageURL, e.tags);
-                }}
-                to={"/details/" + e.id}
-                state={{
-                  q: query,
-                }}
-              >
-                <img src={e.largeImageURL} alt={e.tags}></img>
-              </Link>
+            <div className="container">
+              <div className="listContainer">
+                {button}
+                <Link
+                  onClick={() => {
+                    addToLastView(e.id, e.largeImageURL, e.tags);
+                  }}
+                  to={"/details/" + e.id}
+                  state={{
+                    q: query,
+                  }}
+                >
+                  <img src={e.largeImageURL} alt={e.tags}></img>
+                </Link>
+              </div>
+              <h2>Auto fajne</h2>
             </div>
           );
         })}
       </div>
+      ;
       <Modal
         open={open}
         onClose={handleClose}

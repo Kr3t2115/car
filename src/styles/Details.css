@@ -14,28 +14,6 @@ h1 {
   align-items: center;
   color: #fff;
 }
-
-.navigation a button {
-  border: 2px solid transparent;
-  color: #fff;
-  background: transparent;
-  width: 100%;
-  height: 60%;
-  font-size: calc(20px + (48 - 14) * ((100vw - 300px) / (1600 - 300)));
-  border-radius: 30px;
-  padding: 10px;
-}
-
-.navigation a button:hover {
-  background-color: rgba(0, 0, 0, 0.425);
-  transition: 1s;
-}
-
-.navigation a button:not(:hover) {
-  background-color: transparent;
-  transition: 1s;
-}
-
 .layerDetail {
   background-color: rgba(182, 181, 170, 0.7);
   position: absolute;
@@ -60,7 +38,7 @@ h1 {
 }
 
 .layerDetail input {
-  width: 30%;
+  width: min(200px, 90%);
   height: 30%;
   box-sizing: border-box;
   font-size: 2rem;
