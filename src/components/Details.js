@@ -36,7 +36,7 @@ export default function Details() {
       }
       const parsed = await req.json();
 
-      setDetailData(parsed.hits);
+      setDetailData(parsed.hits[0]);
     } catch (err) {
       console.log(err);
       navigate(`/cars/${location.state.q}`);
@@ -95,7 +95,7 @@ export default function Details() {
         </div>
       </nav>
 
-      <DetailsData data={detailData}></DetailsData>
+      <DetailsData data={detailData} query={location.state.q}></DetailsData>
     </div>
   );
 }

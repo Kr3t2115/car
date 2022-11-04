@@ -16,6 +16,7 @@ export default function CarsList({ data, query }) {
     border: "2px solid #000",
     boxShadow: 24,
     p: 4,
+    textAlign: "center",
   };
 
   const [allFav, setAllFav] = useState([]);

@@ -11,7 +11,7 @@ import ThemeContext, { themes } from "./components/Theme";
 function App() {
   const theme = useContext(ThemeContext);
 
-  const [stateTheme, setStateTheme] = useState(themes.dark);
+  const [stateTheme, setStateTheme] = useState(themes.light);
 
   const changeTheme = () => {
     stateTheme == themes.dark
@@ -27,12 +27,16 @@ function App() {
     <ThemeContext.Provider value={stateTheme}>
       <button
         style={{
-          position: "absolute",
-          top: "0px",
+          position: "fixed",
+          bottom: "0px",
           margin: "30px",
           width: "100px",
           height: "50px",
           zIndex: "1",
+          backgroundColor: "black",
+          color: "white",
+          border: "2px solid black",
+          borderRadius: "10px",
         }}
         onClick={() => {
           changeTheme();
