@@ -30,7 +30,14 @@ export default function LastViewed() {
   }, [tab]);
 
   return (
-    <div>
+    <div
+      onClick={(e) => {
+        const bar = document.getElementById("mySidenav");
+        if (width == "200px" && e.target != bar) {
+          setWidth("0px");
+        }
+      }}
+    >
       <div id="mySidenav" style={style} className="sidenav">
         <a
           className="closebtn"
@@ -78,14 +85,21 @@ export default function LastViewed() {
       <h1>Last</h1>
       <div className="list">
         {tab.map((element) => {
+          const tags = element.tags;
+
+          const newTags = tags.split(",").join(" | ");
           return (
-            <div className="listContainer">
-              <Link
-                to={"/details/" + element.id}
-                state={{ q: location.state.q }}
-              >
-                <img src={element.url} alt={element.tags}></img>
-              </Link>
+            <div className="container">
+              <div className="listContainer">
+                <Link
+                  to={"/details/" + element.id}
+                  state={{ q: location.state.q }}
+                >
+                  <img src={element.url} alt={element.tags}></img>
+                </Link>
+              </div>
+              <h2>Auto fajne</h2>
+              <h4>{newTags}</h4>
             </div>
           );
         })}

@@ -101,7 +101,14 @@ export default function Cars() {
     return () => clearTimeout(timeout);
   }, [carBrand]);
   return (
-    <div>
+    <div
+      onClick={(e) => {
+        const bar = document.getElementById("mySidenav");
+        if (width == "200px" && e.target != bar) {
+          setWidth("0px");
+        }
+      }}
+    >
       <div id="mySidenav" style={style} className="sidenav">
         <a
           className="closebtn"

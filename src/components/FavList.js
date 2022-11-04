@@ -56,6 +56,38 @@ export default function FavList({ query }) {
     }
   };
 
+  const addToLastView = (carId, carUrl, carTags) => {
+    if (localStorage.getItem("last") == null) {
+      localStorage.setItem(
+        "last",
+        JSON.stringify([{ id: carId, url: carUrl, tags: carTags }])
+      );
+    } else {
+      let gettedData = JSON.parse(localStorage.getItem("last"));
+
+      let checked = gettedData.some((e) => e.id === carId);
+
+      if (checked === true) {
+        return;
+      } else {
+        if (gettedData.length >= 10) {
+          let sliced = gettedData.slice(1, 10);
+
+          let arr = [{ id: carId, url: carUrl, tags: carTags }, ...sliced];
+
+          localStorage.setItem("last", JSON.stringify(arr));
+        } else {
+          let newArray = [
+            { id: carId, url: carUrl, tags: carTags },
+            ...gettedData,
+          ];
+
+          localStorage.setItem("last", JSON.stringify(newArray));
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     if (allFav.length > 0) {
       localStorage.setItem("fav", JSON.stringify(allFav));
@@ -65,19 +97,32 @@ export default function FavList({ query }) {
   return (
     <div className="list">
       {allFav.map((element) => {
+        const tags = element.tags;
+
+        const newTags = tags.split(",").join(" | ");
         return (
-          <div className="listContainer">
-            <button
-              id="remove"
-              onClick={() => {
-                remove(element.id);
-              }}
-            >
-              Remove
-            </button>
-            <Link to={"/details/" + element.id} state={{ q: query }}>
-              <img src={element.url} alt={element.tags}></img>
-            </Link>
+          <div className="container">
+            <div className="listContainer">
+              <button
+                id="remove"
+                onClick={() => {
+                  remove(element.id);
+                }}
+              >
+                Remove
+              </button>
+              <Link
+                onClick={() => {
+                  addToLastView(element.id, element.url, element.tags);
+                }}
+                to={"/details/" + element.id}
+                state={{ q: query }}
+              >
+                <img src={element.url} alt={element.tags}></img>
+              </Link>
+            </div>
+            <h2>Auto fajne</h2>
+            <h4>{newTags}</h4>
           </div>
         );
       })}

@@ -141,6 +141,10 @@ export default function CarsList({ data, query }) {
         {data.map((e) => {
           let checked = allFav.some((par) => par.id === e.id);
 
+          const tags = e.tags;
+
+          const newTags = tags.split(",").join(" | ");
+
           let button;
 
           if (checked == true) {
@@ -182,6 +186,7 @@ export default function CarsList({ data, query }) {
                 </Link>
               </div>
               <h2>Auto fajne</h2>
+              <h4>{newTags}</h4>
             </div>
           );
         })}
