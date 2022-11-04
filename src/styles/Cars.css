@@ -43,6 +43,9 @@ h1 {
 
 .container h4 {
   color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .listContainer img {

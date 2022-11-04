@@ -29,6 +29,7 @@ export default function Cars() {
 
     ManufactureList.forEach((e) => {
       if (e.name !== carBrand.toLowerCase()) {
+        console.log("not working");
         carError.classList.add("block");
         return;
       } else {
