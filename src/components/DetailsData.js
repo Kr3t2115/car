@@ -15,17 +15,7 @@ export default function DetailsData({ data, query }) {
       style={{ width: "min(800px, 100vw)", margin: "auto" }}
     >
       <div className="listContainer">
-        <Link
-          onClick={() => {
-            addToLastView(data.id, data.largeImageURL, data.tags);
-          }}
-          to={"/details/" + data.id}
-          state={{
-            q: query,
-          }}
-        >
-          <img src={data.largeImageURL} alt={data.tags}></img>
-        </Link>
+        <img src={data.largeImageURL} alt={data.tags}></img>
       </div>
       <h2>Auto fajne</h2>
       <h4>
@@ -38,7 +28,7 @@ export default function DetailsData({ data, query }) {
           return newTags;
         }}
       </h4>
-      <h4>
+      <h5>
         <RemoveRedEyeIcon style={{ margin: "10px" }}></RemoveRedEyeIcon>
         {data.views}
         <ThumbUpIcon style={{ margin: "10px" }}></ThumbUpIcon> {data.likes}
@@ -47,7 +37,7 @@ export default function DetailsData({ data, query }) {
         <CommentIcon style={{ margin: "10px" }}></CommentIcon> {data.comments}
         <AccountCircleIcon style={{ margin: "10px" }}></AccountCircleIcon>
         {data.user}
-      </h4>
+      </h5>
 
       {/* <h4>
         <ThumbUpIcon></ThumbUpIcon> {data.likes}

@@ -50,6 +50,15 @@ export default function Home() {
       hours: date.getHours(),
       minutes: date.getMinutes(),
     });
+
+    if ((time.hours = 0 && time.minutes == 0)) {
+      const timeout = setTimeout(() => {
+        setTIme({
+          hours: 23,
+          minutes: 59,
+        });
+      }, 2000);
+    }
   }, []);
 
   useEffect(() => {}, [query]);
