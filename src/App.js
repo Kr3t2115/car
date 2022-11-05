@@ -33,9 +33,9 @@ function App() {
           width: "100px",
           height: "50px",
           zIndex: "1",
-          backgroundColor: "black",
+          backgroundColor: "#f03838",
           color: "white",
-          border: "2px solid black",
+          border: "2px solid #f03838",
           borderRadius: "10px",
         }}
         onClick={() => {
