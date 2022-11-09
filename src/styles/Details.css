@@ -50,58 +50,55 @@ h1 {
   margin: auto;
 }
 
-.detailsData {
-  width: 100%;
+.container-detail {
+  width: min(800px, 100%);
+  border: 1px solid gray;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.listContainer-detail {
+  overflow: hidden;
+}
+
+.listContainer-detail button {
+  position: absolute;
+  margin: 20px;
+  width: 60px;
+  height: 40px;
+  border-radius: 20%;
+  background-color: #f03838;
+  border: 2px solid #f03838;
+  box-sizing: border-box;
+  z-index: 2;
+  font-family: "Barlow", sans-serif;
+  font-weight: 700;
+}
+
+.container h4 {
+  color: red;
+}
+
+.container h5 {
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-}
-
-.carImage {
-  width: 70%;
-  max-width: 100%;
-  height: auto;
-  margin: auto;
-  text-align: center;
-}
-
-.userInfo {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
   justify-content: center;
 }
-.userInfo h2 {
-  width: 100%;
-}
-.userInfo img {
-  width: 300px;
-}
-.detailsAboutImage {
-  width: 100%;
-  text-align: center;
-}
 
-.detailsAboutImage img {
-  border-radius: 50%;
+.listContainer-detail img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: center;
+}
+.listContainer-detail img:hover {
+  transition: 1s all ease-in-out;
+  transform: scale(1.1);
+}
+.listContainer-detail img:not(:hover) {
+  transition: 1s all ease-in-out;
+  transform: scale(1);
 }
 
 @media only screen and (max-width: 900px) {
-  .detailsData img:nth-child(1) {
-    width: 100%;
-  }
-  .carImage {
-    width: 100%;
-  }
-  .detailsAboutImage {
-    width: 100%;
-  }
-
-  .detailsAboutImage img {
-    width: 30%;
-    height: 100%;
-    border-radius: 50%;
-    text-align: center;
-  }
 }
