@@ -3,8 +3,9 @@ h1 {
 }
 .navigation {
   width: 100%;
+  margin-bottom: 20px;
   margin: 0px;
-  height: 25vh;
+  height: 300px;
   display: flex;
   background-image: url("./background.jpg");
   background-position: center;
@@ -13,14 +14,17 @@ h1 {
   justify-content: space-around;
   align-items: center;
   color: #fff;
+
+  z-index: 1330;
 }
 .layerDetail {
+  padding: 20px;
   background-color: rgba(182, 181, 170, 0.7);
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 25vh;
+  height: 300px;
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -35,6 +39,7 @@ h1 {
 
 .layerDetail h1 {
   width: 100%;
+  font-size: calc(2rem + 2vw);
 }
 
 .layerDetail input {

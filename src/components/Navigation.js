@@ -39,6 +39,5 @@ export default function Navigation({ query }) {
         Last
       </Link>
     </div>
-    // <h1>adasdasd</h1>
   );
 }
